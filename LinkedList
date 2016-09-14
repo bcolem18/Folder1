@@ -1,0 +1,131 @@
+#include <iostream>
+#include<ctime>
+#include<cstdlib>
+using namespace std;
+
+struct node
+{
+    int number; 
+    node*next; 
+}; 
+
+bool isEmpty(node*head);
+
+    void insertAsFirstElement(node*&head, node*&last, int number); 
+    void insert(node*&head, node*&last, int number); 
+    void showList(node*current); 
+
+
+bool isEmpty(node*head)
+{
+    if(head==NULL)
+        return true; 
+    else 
+        return false; 
+    
+}
+
+    void insertAsFirstElement(node*&head, node*&last, int number) 
+    {
+        node*temp= new node; 
+        temp->number=number; 
+        temp->next=NULL; 
+        head=temp; 
+        last=temp; 
+        
+        
+    }
+    void insert(node*&head, node*&last, int number) 
+    {
+        if(isEmpty(head))
+        insertAsFirstElement(head,last,number); 
+        else
+        {
+            node*temp= new node; 
+        temp->number=number; 
+        temp->next=NULL; 
+        last->next=temp; 
+        last=temp; 
+        }
+    }
+    void showList(node*current)
+    {
+        if(isEmpty(current))
+        {
+        cout<< "Empty\n";
+        }
+        else
+        {
+            cout<<"The list contains: \n"; 
+            while(current!= NULL)
+            {
+                cout<<current->number <<endl; 
+                current = current -> next; 
+            }
+        }
+    }
+
+
+
+
+int main(int argc, char *argv[]) {
+     node*head=NULL; 
+     node*last=NULL; 
+     node*next=NULL; 
+     node*nodePTR=head; 
+     
+     int amountToSearch=std::stoi(argv[2]); 
+     
+  if(argc==2)
+  {
+     std::cout << argv[0] << std::endl;
+      std::cout << argv[1] << std::endl;
+       int random_Num=std::stoi(argv[1]);
+    std::cout<<random_Num<<std::endl; 
+  
+   int count; 
+  
+      
+      for(int i=0; i<random_Num; i++)
+      {
+          count= rand();
+          insert(head,last,count);
+          
+         
+      }
+      
+      
+      
+      
+  }
+  
+     showList(head); 
+
+  if(argc==3)
+  {
+       int random_Num=std::stoi(argv[1]);
+       int amountToSearch=std::stoi(argv[2]); 
+    std::cout<<random_Num<<std::endl; 
+    std::cout<<amountToSearch<<std::endl; 
+  
+   int count; 
+  
+ 
+
+      for(int i=0; i<random_Num; i++)
+      {
+          count= rand();
+          insert(head,last, count);
+          
+         
+      }
+     
+  
+
+  }     
+   
+      
+ 
+      showList(head);
+	return 0;
+}
